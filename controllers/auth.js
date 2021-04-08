@@ -1,4 +1,6 @@
+//mongodb models
 const User = require("../models/User");
+const Diary = require("../models/Diary");
 const ErrorResponse = require("../utils/errorResponse");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
@@ -14,6 +16,20 @@ exports.register = async (req, res, next) => {
     sendToken(user, 201, res);
   } catch (error) {
     next(error);
+  }
+};
+
+exports.submitdiary = async (req, res, next) => {
+  const { subject, text } = req.body;
+  try {
+    const diary = await Diary.create({
+      subject,
+      text,
+    });
+    diary.save();
+  } catch (error) {
+    console.log(error);
+    return next(new ErrorResponse("Veritabanına kaydetmede sorun oldu.", 400));
   }
 };
 
@@ -45,8 +61,8 @@ exports.login = async (req, res, next) => {
 };
 
 exports.forgotpassword = async (req, res, next) => {
+  console.log(req.body);
   const { email } = req.body;
-  console.log(email);
   try {
     const user = await User.findOne({ email: email });
     if (!user) {

@@ -29,7 +29,6 @@ const LoginScreen = ({ history }) => {
         { email, password },
         config
       );
-
       localStorage.setItem("authToken", data.token);
 
       history.push("/");
