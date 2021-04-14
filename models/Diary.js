@@ -3,6 +3,10 @@ const bcrypt = require("bcryptjs");
 const md5 = require("md5");
 
 DiarySchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required:true
+  },
   text: {
     type: String,
     required: [true, "Please provide a diary"],

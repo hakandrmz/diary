@@ -20,7 +20,7 @@ const App = () => {
         <NavigationBar />
         <Switch>
           <PrivateRoute exact path="/diaryform" component={DiaryForm} />
-          <PrivateRoute exact path="/diaries" component={Diaries} />
+          <PrivateRoute exact path="/mydiaries" component={Diaries} />
           <PrivateRoute exact path="/" component={PrivateScreen} />
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/register" component={RegisterScreen} />

@@ -16,6 +16,8 @@ const PrivateScreen = ({ history }) => {
       };
       try {
         const { data } = await axios.get("/api/private", config);
+        localStorage.setItem("userid", data.id);
+
         setPrivateData(data.data);
       } catch (error) {
         localStorage.removeItem("authToken");

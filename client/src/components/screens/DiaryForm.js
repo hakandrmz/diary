@@ -21,7 +21,7 @@ const DiaryForm = ({}) => {
     try {
       const { data } = await axios.post(
         "/api/auth/submitdiary",
-        { subject, text },
+        { subject, text, id },
         config
       );
     } catch (error) {
@@ -29,8 +29,8 @@ const DiaryForm = ({}) => {
         setError("");
       }, 5000);
     }
-    console.log(localStorage.getItem("email"));
   };
+  const id = localStorage.getItem("userid");
 
   return (
     <>
@@ -49,6 +49,7 @@ const DiaryForm = ({}) => {
             />
           </div>
 
+          <input type="hidden" value={id} name="userid" />
           <div className="form-group">
             <label htmlFor="text">Diary </label>
             <input
