@@ -21,7 +21,7 @@ const DiaryForm = ({}) => {
     try {
       const { data } = await axios.post(
         "/api/auth/submitdiary",
-        { subject, text, id },
+        { subject, text,id},
         config
       );
     } catch (error) {
@@ -49,7 +49,7 @@ const DiaryForm = ({}) => {
             />
           </div>
 
-          <input type="hidden" value={id} name="userid" />
+          <input type="hidden" name="userid" />
           <div className="form-group">
             <label htmlFor="text">Diary </label>
             <input

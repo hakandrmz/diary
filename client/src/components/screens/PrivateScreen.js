@@ -14,10 +14,10 @@ const PrivateScreen = ({ history }) => {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
       };
+
       try {
         const { data } = await axios.get("/api/private", config);
         localStorage.setItem("userid", data.id);
-
         setPrivateData(data.data);
       } catch (error) {
         localStorage.removeItem("authToken");
