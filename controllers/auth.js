@@ -20,11 +20,10 @@ exports.register = async (req, res, next) => {
 };
 
 exports.submitdiary = async (req, res, next) => {
-  const { subject, text,id } = req.body;
-  console.log(id)
+  const { subject, text, id } = req.body;
   try {
     const diary = await Diary.create({
-      userId:id,
+      userId: id,
       subject,
       text,
     });

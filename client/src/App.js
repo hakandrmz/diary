@@ -9,7 +9,6 @@ import LoginScreen from "./components/screens/LoginScreen";
 import RegisterScreen from "./components/screens/RegisterScreen";
 import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen";
 import ResetPasswordScreen from "./components/screens/ResetPasswordScreen";
-import Diaries from "./components/screens/Diaries";
 import NavigationBar from "./components/screens/NavigationBar";
 import DiaryForm from "./components/screens/DiaryForm";
 
@@ -20,7 +19,6 @@ const App = () => {
         <NavigationBar />
         <Switch>
           <PrivateRoute exact path="/diaryform" component={DiaryForm} />
-          <PrivateRoute exact path="/mydiaries" component={Diaries} />
           <PrivateRoute exact path="/" component={PrivateScreen} />
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/register" component={RegisterScreen} />

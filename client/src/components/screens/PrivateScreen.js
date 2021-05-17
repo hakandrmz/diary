@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
+import {
+  Card,
+  Button,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText,
+} from "reactstrap";
 import axios from "axios";
 import "./PrivateScreen.css";
 
 const PrivateScreen = ({ history }) => {
   const [error, setError] = useState("");
-  const [privateData, setPrivateData] = useState("");
+  const [privateData, setPrivateData] = useState([]);
 
   useEffect(() => {
     const fetchPrivateData = async () => {
@@ -18,15 +27,17 @@ const PrivateScreen = ({ history }) => {
       try {
         const { data } = await axios.get("/api/private", config);
         localStorage.setItem("userid", data.id);
+
         setPrivateData(data.data);
       } catch (error) {
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userid");
         setError("You are not authorized please login");
       }
     };
 
     fetchPrivateData();
-  }, [history]);
+  }, []);
 
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
@@ -37,7 +48,14 @@ const PrivateScreen = ({ history }) => {
     <span className="error-message">{error}</span>
   ) : (
     <>
-      <div>{privateData}</div>
+      <div>
+        {privateData.map((e) => (
+          <Card key={e._id}>
+            <CardTitle>{e.subject}</CardTitle>
+            <CardBody>{e.text}</CardBody>
+          </Card>
+        ))}
+      </div>
       <button onClick={logoutHandler}>Logout</button>
     </>
   );
