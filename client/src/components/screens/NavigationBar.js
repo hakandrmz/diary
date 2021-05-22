@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router";
 import {
   Collapse,
   Navbar,
@@ -15,19 +16,22 @@ const NavigationBar = ({ history }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  if (localStorage.userId) {
-    console.log("localStorage.userId");
-    setIsLoggedIn(true);
-  }
-
   const toggle = () => setIsOpen(!isOpen);
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userid");
   };
 
+  const loginInfo = () => {
+    if (localStorage.getItem("userid")) {
+      setIsLoggedIn(true);
+      console.log(isLoggedIn);
+    }
+  };
+
   return (
     <div>
+      {loginInfo}
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">Günlük Uygulaması</NavbarBrand>
         <NavbarToggler onClick={toggle} />
