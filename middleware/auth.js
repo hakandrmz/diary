@@ -14,14 +14,14 @@ exports.protect = async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   }
   if (!token) {
-    return next(new ErrorResponse("not authorized to acces this route"), 401);
+    return next(new ErrorResponse("Not authorized to acces this route"), 401);
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
 
     if (!user) {
-      return next(new ErrorResponse("no user found with this id"));
+      return next(new ErrorResponse("No user found with this id"));
     }
     req.user = user;
 
