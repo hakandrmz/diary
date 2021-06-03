@@ -2,24 +2,25 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const { encryptData, decryptData } = require("../utils/aws");
 
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, "Please provide a username"],
+    required: [true, "Kullanıcı Adı Girilmesi Zorunlu"],
   },
   email: {
     type: String,
-    required: [true, "Please provide a email"],
+    required: [true, "Mail Adresi Gerekli"],
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please fill a valid email address",
+      "Email adresi geçersiz.",
     ],
   },
   password: {
     type: String,
-    required: [true, "please add a passwrod"],
+    required: [true, "Şifre kullanılmalı."],
     minlength: 6,
     select: false,
   },

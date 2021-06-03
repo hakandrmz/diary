@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router";
 import {
   Collapse,
   Navbar,
@@ -9,7 +8,6 @@ import {
   NavItem,
   NavLink,
   NavbarText,
-  Button,
 } from "reactstrap";
 
 const NavigationBar = ({ history }) => {
@@ -17,10 +15,6 @@ const NavigationBar = ({ history }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-  const logoutHandler = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userid");
-  };
 
   const loginInfo = () => {
     if (localStorage.getItem("userid")) {
@@ -43,11 +37,10 @@ const NavigationBar = ({ history }) => {
             <NavItem>
               <NavLink href="/login">Login</NavLink>
             </NavItem>
-            {isLoggedIn ? "giris yapildi" : "giris yapilmadi"}
+
             <NavItem>
               <NavLink href="/diaryform/">New Note</NavLink>
             </NavItem>
-            <button onClick={logoutHandler}>Çıkış Yap</button>
           </Nav>
           <NavbarText>My Diaries</NavbarText>
         </Collapse>

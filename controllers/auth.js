@@ -38,18 +38,18 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new ErrorResponse("please provide an email and password", 400));
+    return next(new ErrorResponse("Email ve şifre alanlarını giriniz", 400));
   }
   try {
     const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
-      return next(new ErrorResponse("invalid credentials", 401));
+      return next(new ErrorResponse("Geçersiz Kullanıcı", 401));
     }
     const isMatch = await user.matchPasswords(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("invalid credentials", 401));
+      return next(new ErrorResponse("Şifre eşleşmiyor.", 401));
     }
 
     sendToken(user, 200, res);

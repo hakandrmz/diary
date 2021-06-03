@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Button,
-  CardHeader,
-  CardFooter,
-  CardBody,
-  CardTitle,
-  CardText,
-} from "reactstrap";
+import { Card, CardBody, CardTitle } from "reactstrap";
 import axios from "axios";
 import "./PrivateScreen.css";
 

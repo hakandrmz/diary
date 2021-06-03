@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 
 DiarySchema = new mongoose.Schema({
   userId: {
@@ -8,11 +7,11 @@ DiarySchema = new mongoose.Schema({
   },
   text: {
     type: String,
-    required: [true, "Please provide a diary"],
+    required: [true, "Günlük İçeriği Giriniz"],
   },
   date: {
     type: Date,
-    required: [false, "please provide a date"],
+    required: [false, "Tarih Girilmesi Zorunludur."],
     default: Date.now,
   },
   subject: {
