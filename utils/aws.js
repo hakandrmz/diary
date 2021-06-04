@@ -6,12 +6,11 @@ const generatorKeyId = process.env.AWS_KEY_ID;
 const keyring = new KmsKeyringNode({ generatorKeyId });
 
 const context = {
-  stage: "youtube",
-  purpose: "youtube demo",
+  stage: "demo",
+  purpose: "demo",
   origin: "us-east-1",
 };
-
-exports.encryptData = async (plainText, context) => {
+exports.encryptData = async (plainText) => {
   try {
     const { result } = await encrypt(keyring, plainText, {
       encryptionContext: context,
@@ -22,18 +21,18 @@ exports.encryptData = async (plainText, context) => {
   }
 };
 
-exports.decryptData = async (encryptedData, context) => {
+exports.decryptData = async (encryptedData) => {
   try {
     const { plaintext, messageHeader } = await decrypt(keyring, encryptedData);
-    console.log("===== Message Header =======");
+    console.log("Mesaj Header");
     console.log(JSON.stringify(messageHeader.encryptionContext));
 
     Object.entries(context).forEach(([key, value]) => {
       if (messageHeader.encryptionContext[key] === value) {
-        console.log("it matched..");
+        console.log("Anahtarlar eşleşti.");
       }
       if (messageHeader.encryptionContext[key] !== value)
-        throw new Error("Encryption Context does not match expected values");
+        throw new Error("Şifreleme içeriği eşleşmedi.");
     });
 
     return plaintext.toString();
