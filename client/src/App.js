@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 // Routing
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -13,29 +13,29 @@ import NavigationBar from "./components/screens/NavigationBar";
 import DiaryForm from "./components/screens/DiaryForm";
 
 const App = () => {
-  return (
-    <Router>
-      <div className="app">
-        <NavigationBar />
-        <Switch>
-          <PrivateRoute exact path="/diaryform" component={DiaryForm} />
-          <PrivateRoute exact path="/" component={PrivateScreen} />
-          <Route exact path="/login" component={LoginScreen} />
-          <Route exact path="/register" component={RegisterScreen} />
-          <Route
-            exact
-            path="/forgotpassword"
-            component={ForgotPasswordScreen}
-          />
-          <Route
-            exact
-            path="/resetpassword/:resetToken"
-            component={ResetPasswordScreen}
-          />
-        </Switch>
-      </div>
-    </Router>
-  );
+    return (
+        <Router>
+            <div className="app">
+                <NavigationBar/>
+                <Switch>
+                    <PrivateRoute exact path="/diaryform" component={DiaryForm}/>
+                    <PrivateRoute exact path="/" component={PrivateScreen}/>
+                    <Route exact path="/login" component={LoginScreen}/>
+                    <Route exact path="/register" component={RegisterScreen}/>
+                    <Route
+                        exact
+                        path="/forgotpassword"
+                        component={ForgotPasswordScreen}
+                    />
+                    <Route
+                        exact
+                        path="/resetpassword/:resetToken"
+                        component={ResetPasswordScreen}
+                    />
+                </Switch>
+            </div>
+        </Router>
+    );
 };
 
 export default App;

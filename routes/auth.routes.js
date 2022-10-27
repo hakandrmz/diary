@@ -7,7 +7,7 @@ const {
   login,
   resetpassword,
   submitdiary,
-} = require("../controllers/auth");
+} = require("../controllers/auth.controller");
 
 router.route("/register").post(register);
 
